@@ -1,0 +1,15 @@
+version: '2'
+services:
+  fluentd:
+    build: .
+    volumes:
+      - ./fluent.conf:/fluentd/etc/fluent.conf:ro
+      - buffer:/fluentd/buffer
+    ports:
+      - 9880:9880
+    environment:
+      - MONGO_IP=$MONGO_IP
+      - MONGO_PORT=$MONGO_PORT
+      - MONGO_DATABASE=$MONGO_DATABASE
+volumes:
+  buffer: {}
